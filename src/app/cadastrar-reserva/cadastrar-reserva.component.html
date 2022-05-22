@@ -1,0 +1,49 @@
+<form [formGroup]="formulario" (ngSubmit)="enviar()">
+  <h4>Nome do solicitante</h4>
+  <input class="form-control" type="text" formControlName="nome" />
+  <div *ngIf="isNomeNull" class="alert alert-danger mt-1" role="alert">
+    Nome é um campo obrigatório.
+  </div>
+  <div *ngIf="isNomeBad" class="alert alert-danger mt-1" role="alert">
+    Nome precisa de pelo menos 3 caracteres.
+  </div>
+
+  <label for="labs"><h4>Laboratório</h4></label>
+  <select class="form-select" name="labs" id="labs" formControlName="lab">
+    <option *ngFor="let lami of labs" value="{{ lami.id }}">
+      {{ lami.laboratorio }}
+    </option>
+  </select>
+  <div *ngIf="isLamiNull" class="alert alert-danger mt-1" role="alert">
+    Laboratório é um campo obrigatório.
+  </div>
+
+  <h4>Data da reserva</h4>
+  <input class="form-control" type="date" formControlName="data" />
+  <div *ngIf="isDataNull" class="alert alert-danger mt-1" role="alert">
+    Data é um campo obrigatório.
+  </div>
+  <div *ngIf="isDataBad" class="alert alert-danger mt-1" role="alert">
+    Intervalo de tempo mínimo para reserva: 1 dia.
+  </div>
+
+  <h4>Horário de Início</h4>
+  <input class="form-control" type="time" formControlName="horaI" />
+  <div *ngIf="isHoraINull" class="alert alert-danger mt-1" role="alert">
+    Horário de Início é um campo obrigatório.
+  </div>
+
+  <h4>Horário de Término</h4>
+  <input class="form-control" type="time" formControlName="horaF" />
+  <div *ngIf="isHoraFNull" class="alert alert-danger mt-1" role="alert">
+    Horário de Término é um campo obrigatório.
+  </div>
+  <div *ngIf="isHoraFBad" class="alert alert-danger mt-1" role="alert">
+    Horário de Término é um tempo inválido.
+  </div>
+
+  <br />
+  <input class="btn bg-primary" type="submit" value="Agendar" />
+</form>
+
+<hr />

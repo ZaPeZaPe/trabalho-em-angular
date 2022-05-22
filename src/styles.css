@@ -1,0 +1,14 @@
+/* Add application styles & imports to this file! */
+
+* {
+  padding: 10px;
+  text-align: center;
+}
+
+body {
+  background-color: rgb(211, 211, 211);
+}
+
+.btn {
+  color: white;
+}

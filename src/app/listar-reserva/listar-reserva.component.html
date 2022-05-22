@@ -1,0 +1,23 @@
+<table class="table table-light table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Solicitante</th>
+      <th scope="col">Lami</th>
+      <th scope="col">Data</th>
+      <th scope="col">Horário Início</th>
+      <th scope="col">Horário Término</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let atributes of lista">
+      <th>{{ atributes.solicitante }}</th>
+      <th>{{ atributes.laboratorio }}</th>
+      <th>{{ data }}</th>
+      <th>{{ atributes.inicio }}</th>
+      <th>{{ atributes.termino }}</th>
+    </tr>
+    <!-- <div >
+      <p>Temperatura em Fahrenheit: {{ valorF }}</p>
+    </div> -->
+  </tbody>
+</table>
