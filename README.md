@@ -1,3 +1,3 @@
-# angular-dos-crias
+# Trabalho em angular
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ivy-krrkbm)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-dos-crias)
