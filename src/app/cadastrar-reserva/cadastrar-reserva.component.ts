@@ -126,6 +126,16 @@ export class CadastrarReservaComponent implements OnInit {
     );
   }
 
+  limpar() {
+    this.formulario.value.nome = null;
+    this.formulario.value.lab = null;
+    this.formulario.value.data = null;
+    this.formulario.value.horaI = null;
+    this.formulario.value.horaF = null;
+  }
+
+  //#TODO Mensagem de sucesso e limpar o formulário;
+
   enviar() {
     const nome: string = this.formulario.value.nome;
     const lami: number = this.formulario.value.lab;
@@ -142,6 +152,7 @@ export class CadastrarReservaComponent implements OnInit {
       this.validarHora(horaI, horaF)
     ) {
       this.puxe();
+      this.limpar();
     }
   }
 }
