@@ -77,7 +77,7 @@ export class CadastrarReservaComponent implements OnInit {
     }
     return true;
   }
-  //#FIXME arrumar essa jossa
+
   validarHora(horaI: Time, horaF: Time) {
     if (horaI == null) {
       this.isHoraINull = true;
@@ -91,17 +91,18 @@ export class CadastrarReservaComponent implements OnInit {
       this.isHoraFBad = true;
       return false;
     }
-    console.log(horaF + ' ' + horaI);
-    console.log(Number(horaF.hours) + ' ' + Number(horaI.hours));
-    console.log(horaF[0] - horaI[1]);
-    this.minutos = (horaF.hours - horaI.hours) * 60;
-    this.minutos += horaF.minutes - horaI.minutes;
-    console.log(this.minutos);
-    if (this.minutos < 85) {
+    if (this.calcularMinutos(horaI, horaF) < 85) {
       this.isHoraFBad = true;
       return false;
     }
     return true;
+  }
+
+  calcularMinutos(horaI: Time, horaF: Time) {
+    var minutosString = String(horaF + ':' + horaI).split(':');
+    this.minutos = (Number(minutosString[0]) - Number(minutosString[2])) * 60;
+    this.minutos += Number(minutosString[1]) - Number(minutosString[3]);
+    return this.minutos;
   }
 
   setFalse() {
@@ -126,11 +127,11 @@ export class CadastrarReservaComponent implements OnInit {
   }
 
   enviar() {
-    const nome = this.formulario.value.nome;
-    const lami = this.formulario.value.lab;
-    const data = this.formulario.value.data;
-    const horaI = this.formulario.value.horaI;
-    const horaF = this.formulario.value.horaF;
+    const nome: string = this.formulario.value.nome;
+    const lami: number = this.formulario.value.lab;
+    const data: Date = this.formulario.value.data;
+    const horaI: Time = this.formulario.value.horaI;
+    const horaF: Time = this.formulario.value.horaF;
 
     this.setFalse();
 

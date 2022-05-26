@@ -24,8 +24,7 @@
     Data é um campo obrigatório.
   </div>
   <div *ngIf="isDataBad" class="alert alert-danger mt-1" role="alert">
-    Intervalo de data mínimo para reserva: 1 dia. Intervalo de duração mínimo
-    para reserva: 1:25 Horas.
+    Intervalo de data mínimo para reserva: 1 dia.
   </div>
 
   <h4>Horário de Início</h4>
@@ -40,7 +39,7 @@
     Horário de Término é um campo obrigatório.
   </div>
   <div *ngIf="isHoraFBad" class="alert alert-danger mt-1" role="alert">
-    Horário de Término é um tempo inválido.
+    Horário de Término é um tempo inválido. (Tempo min 1:25 Horas)
   </div>
 
   <br />
