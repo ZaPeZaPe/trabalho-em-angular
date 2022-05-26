@@ -15,6 +15,7 @@ export class CadastrarReservaComponent implements OnInit {
   pipe = new DatePipe('en-US');
   todayWithPipe = null;
   formulario: FormGroup;
+  minutos: number = 0;
 
   isNomeBad: boolean;
   isNomeNull: boolean;
@@ -76,9 +77,8 @@ export class CadastrarReservaComponent implements OnInit {
     }
     return true;
   }
-
+  //#FIXME arrumar essa jossa
   validarHora(horaI: Time, horaF: Time) {
-    console.log(horaF, horaI);
     if (horaI == null) {
       this.isHoraINull = true;
       return false;
@@ -88,6 +88,16 @@ export class CadastrarReservaComponent implements OnInit {
       return false;
     }
     if (horaI >= horaF) {
+      this.isHoraFBad = true;
+      return false;
+    }
+    console.log(horaF + ' ' + horaI);
+    console.log(Number(horaF.hours) + ' ' + Number(horaI.hours));
+    console.log(horaF[0] - horaI[1]);
+    this.minutos = (horaF.hours - horaI.hours) * 60;
+    this.minutos += horaF.minutes - horaI.minutes;
+    console.log(this.minutos);
+    if (this.minutos < 85) {
       this.isHoraFBad = true;
       return false;
     }
@@ -131,11 +141,6 @@ export class CadastrarReservaComponent implements OnInit {
       this.validarHora(horaI, horaF)
     ) {
       this.puxe();
-    }
-
-    console.log(this.formulario.value.lab);
-    for (let atributes of this.reservaService.listar()) {
-      console.log(atributes.data);
     }
   }
 }

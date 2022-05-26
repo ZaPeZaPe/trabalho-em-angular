@@ -15,8 +15,5 @@ export class ListarReservaComponent implements OnInit {
 
   ngOnInit() {
     this.lista = this.reservaService.listar();
-    for (let atributo of this.lista) {
-      this.data = this.pipe.transform(atributo.data, 'dd/MM/yyyy');
-    }
   }
 }

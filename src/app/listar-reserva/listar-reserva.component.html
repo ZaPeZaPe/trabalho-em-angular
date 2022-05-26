@@ -12,7 +12,7 @@
     <tr *ngFor="let atributes of lista">
       <th>{{ atributes.solicitante }}</th>
       <th>{{ atributes.laboratorio }}</th>
-      <th>{{ data }}</th>
+      <th>{{ this.pipe.transform(atributes.data, 'dd/MM/yyyy') }}</th>
       <th>{{ atributes.inicio }}</th>
       <th>{{ atributes.termino }}</th>
     </tr>
