@@ -126,6 +126,8 @@ export class CadastrarReservaComponent implements OnInit {
     );
   }
 
+  //#TODO Mensagem de sucesso e limpar o formulário;
+
   limpar() {
     this.formulario.value.nome = null;
     this.formulario.value.lab = null;
@@ -133,8 +135,6 @@ export class CadastrarReservaComponent implements OnInit {
     this.formulario.value.horaI = null;
     this.formulario.value.horaF = null;
   }
-
-  //#TODO Mensagem de sucesso e limpar o formulário;
 
   enviar() {
     const nome: string = this.formulario.value.nome;
