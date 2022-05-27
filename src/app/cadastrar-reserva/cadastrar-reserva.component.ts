@@ -85,18 +85,18 @@ export class CadastrarReservaComponent implements OnInit {
     var anoAgen: number = Number(dataAgen[2]);
     var qtdDias: number;
 
+    if (anoHoje - anoAgen == -1) {
+      if (!(mesHoje - mesAgen <= 11 && mesHoje - mesAgen >= 9)) {
+        return true;
+      }
+    } else if (anoHoje - anoAgen != 0) {
+      return true;
+    }
+
     qtdDias = diaAgen - diaHoje;
     qtdDias += (mesAgen - mesHoje) * 30;
 
     if (qtdDias > 90) {
-      return true;
-    }
-
-    if (anoHoje - anoAgen == -1) {
-      if (mesHoje - mesAgen != 10) {
-        return true;
-      }
-    } else if (anoHoje - anoAgen != 0) {
       return true;
     }
 
