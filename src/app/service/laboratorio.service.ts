@@ -7,18 +7,18 @@ import { Laboratorio } from '../model/laboratorio-models';
 export class LaboratorioService {
   lab: Laboratorio[];
 
-  labo: { laboratorio: string; id: number }[] = [
-    { laboratorio: 'Lami 1', id: 1 },
-    { laboratorio: 'Lami 2', id: 2 },
-    { laboratorio: 'Lami 3', id: 3 },
-    { laboratorio: 'Lami 4', id: 4 },
-    { laboratorio: 'Lami 5', id: 5 },
-    { laboratorio: 'Lami 6', id: 6 },
-    { laboratorio: 'Lami 7', id: 7 },
-    { laboratorio: 'Lami 8', id: 8 },
-    { laboratorio: 'Lami 9', id: 9 },
-    { laboratorio: 'Lami 10', id: 10 },
-    { laboratorio: 'Sala Google', id:11 },
+  labo: { laboratorio: string; id: number; bloco: string }[] = [
+    { laboratorio: 'Lami 1', id: 404, bloco: 'B' },
+    { laboratorio: 'Lami 2', id: 405, bloco: 'B' },
+    { laboratorio: 'Lami 3', id: 406, bloco: 'B' },
+    { laboratorio: 'Lami 4', id: 407, bloco: 'B' },
+    { laboratorio: 'Lami 5', id: 408, bloco: 'B' },
+    { laboratorio: 'Lami 6', id: 409, bloco: 'B' },
+    { laboratorio: 'Lami 7', id: 410, bloco: 'B' },
+    { laboratorio: 'Lami 8', id: 411, bloco: 'B' },
+    { laboratorio: 'Lami 9', id: 412, bloco: 'B' },
+    { laboratorio: 'Lami 10', id: 413, bloco: 'B' },
+    { laboratorio: 'Sala Google', id: 1, bloco: 'Sala Google' },
   ];
 
   listar() {

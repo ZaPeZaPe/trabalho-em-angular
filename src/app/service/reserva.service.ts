@@ -7,7 +7,7 @@ import { Reserva } from '../model/reserva-model';
 })
 export class ReservaService {
   lista: Reserva[] = [];
-  puxar(nome: string, lami: number, data: Date, inicio: Time, termino: Time) {
+  doPush(nome: string, lami: number, data: Date, inicio: Time, termino: Time) {
     this.lista.push(new Reserva(nome, lami, data, inicio, termino));
   }
   listar() {

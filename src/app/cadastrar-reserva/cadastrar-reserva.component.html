@@ -10,7 +10,7 @@
 
   <label for="labs"><h4>Laboratório</h4></label>
   <select class="form-select" name="labs" id="labs" formControlName="lab">
-    <option *ngFor="let lami of labs" value="{{ lami.id }}">
+    <option *ngFor="let lami of labs" value="{{ lami.bloco + lami.id }}">
       {{ lami.laboratorio }}
     </option>
   </select>
@@ -24,7 +24,8 @@
     Data é um campo obrigatório.
   </div>
   <div *ngIf="isDataBad" class="alert alert-danger mt-1" role="alert">
-    Intervalo de data mínimo para reserva: 1 dia.
+    Dias min. até reserva: 1 dia.
+    Dias max. até reserva: 3 meses.
   </div>
 
   <h4>Horário de Início</h4>
@@ -44,6 +45,9 @@
 
   <br />
   <input class="btn bg-primary" type="submit" value="Agendar" />
+  <div *ngIf="isEverythingGood" class="alert alert-success mt-3" role="alert">
+    Agendamento realizado com sucesso!
+  </div>
 </form>
 
 <hr />

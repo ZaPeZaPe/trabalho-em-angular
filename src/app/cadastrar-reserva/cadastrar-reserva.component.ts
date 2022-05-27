@@ -11,9 +11,9 @@ import { DatePipe } from '@angular/common';
   templateUrl: './cadastrar-reserva.component.html',
 })
 export class CadastrarReservaComponent implements OnInit {
-  today: Date = new Date();
+  hoje: Date = new Date();
   pipe = new DatePipe('en-US');
-  todayWithPipe = null;
+  hojeString: string = this.pipe.transform(this.hoje, 'dd/MM/yyyy');
   formulario: FormGroup;
   minutos: number = 0;
 
@@ -25,6 +25,7 @@ export class CadastrarReservaComponent implements OnInit {
   isHoraINull: boolean;
   isHoraFNull: boolean;
   isHoraFBad: boolean;
+  isEverythingGood: boolean;
 
   constructor(
     private reservaService: ReservaService,
@@ -34,7 +35,6 @@ export class CadastrarReservaComponent implements OnInit {
   labs: Laboratorio[];
 
   ngOnInit(): void {
-    this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
     this.labs = this.laboratorioService.listar();
     this.formulario = new FormGroup({
       nome: new FormControl(null),
@@ -58,16 +58,49 @@ export class CadastrarReservaComponent implements OnInit {
   }
 
   validarData(data: Date) {
-    var dataNova = this.pipe.transform(data, 'dd/MM/yyyy');
+    var dataAgendadaString = this.pipe.transform(new Date(data), 'dd/MM/yyyy');
+    var dataAgenParticionada = dataAgendadaString.split('/');
+    var dataHojeParticionada = this.hojeString.split('/');
     if (data == null) {
       this.isDataNull = true;
       return false;
     }
-    if (dataNova <= this.todayWithPipe) {
+    if (dataAgenParticionada[2].toString().length != 4) {
+      this.isDataBad = true;
+      return false;
+    }
+    if (this.calcularData(dataHojeParticionada, dataAgenParticionada)) {
       this.isDataBad = true;
       return false;
     }
     return true;
+  }
+
+  calcularData(dataHoje: string[], dataAgen: string[]) {
+    var diaHoje: number = Number(dataHoje[0]);
+    var mesHoje: number = Number(dataHoje[1]);
+    var anoHoje: number = Number(dataHoje[2]);
+    var diaAgen: number = Number(dataAgen[0]);
+    var mesAgen: number = Number(dataAgen[1]);
+    var anoAgen: number = Number(dataAgen[2]);
+    var qtdDias: number;
+
+    qtdDias = diaAgen - diaHoje;
+    qtdDias += (mesAgen - mesHoje) * 30;
+
+    if (qtdDias > 90) {
+      return true;
+    }
+
+    if (anoHoje - anoAgen == -1) {
+      if (mesHoje - mesAgen != 10) {
+        return true;
+      }
+    } else if (anoHoje - anoAgen != 0) {
+      return true;
+    }
+
+    return false;
   }
 
   validarLami(lami: number) {
@@ -116,8 +149,8 @@ export class CadastrarReservaComponent implements OnInit {
     this.isHoraFBad = false;
   }
 
-  puxe() {
-    this.reservaService.puxar(
+  push() {
+    this.reservaService.doPush(
       this.formulario.value.nome,
       this.formulario.value.lab,
       this.formulario.value.data,
@@ -126,14 +159,8 @@ export class CadastrarReservaComponent implements OnInit {
     );
   }
 
-  //#TODO Mensagem de sucesso e limpar o formulário;
-
   limpar() {
-    this.formulario.value.nome = null;
-    this.formulario.value.lab = null;
-    this.formulario.value.data = null;
-    this.formulario.value.horaI = null;
-    this.formulario.value.horaF = null;
+    this.formulario.reset();
   }
 
   enviar() {
@@ -142,7 +169,6 @@ export class CadastrarReservaComponent implements OnInit {
     const data: Date = this.formulario.value.data;
     const horaI: Time = this.formulario.value.horaI;
     const horaF: Time = this.formulario.value.horaF;
-
     this.setFalse();
 
     if (
@@ -151,8 +177,11 @@ export class CadastrarReservaComponent implements OnInit {
       this.validarData(data) &&
       this.validarHora(horaI, horaF)
     ) {
-      this.puxe();
+      this.push();
+      this.isEverythingGood = true;
       this.limpar();
+    } else {
+      this.isEverythingGood = false;
     }
   }
 }
