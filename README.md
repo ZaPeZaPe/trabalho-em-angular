@@ -1,3 +1,3 @@
-# Trabalho em angular
+# Agendamento de salas
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-dos-crias)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/agendamento-em-angular)
