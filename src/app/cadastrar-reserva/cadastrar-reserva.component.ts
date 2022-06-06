@@ -96,7 +96,7 @@ export class CadastrarReservaComponent implements OnInit {
     qtdDias = diaAgen - diaHoje;
     qtdDias += (mesAgen - mesHoje) * 30;
 
-    if (qtdDias > 90) {
+    if (qtdDias > 90 || qtdDias <= 0) {
       return true;
     }
 
