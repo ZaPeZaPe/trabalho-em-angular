@@ -8,7 +8,7 @@
     Nome precisa de pelo menos 3 caracteres.
   </div>
 
-  <label for="labs"><h4>Laboratório</h4></label>
+  <h4>Laboratório</h4>
   <select class="form-select" name="labs" id="labs" formControlName="lab">
     <option *ngFor="let lami of labs" value="{{ lami.bloco + lami.id }}">
       {{ lami.laboratorio }}
@@ -39,7 +39,7 @@
     Horário de Término é um campo obrigatório.
   </div>
   <div *ngIf="isHoraFBad" class="alert alert-danger mt-1" role="alert">
-    Horário de Término é um tempo inválido. (Tempo min 1:25 Horas)
+    Tempo minimo para reserva 1:25 Horas
   </div>
 
   <br />
